@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TaskDetailsViewModel>
+
+@{
+    ViewBag.Title = "All Tasks";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var task in Model)
+        {
+            <input type="hidden" asp-for="@task.Id" />
+                <div class="col-sm-6" style="margin-bottom: 10px">
+                    <div class="card ">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">@task.Title</h4>
+                            <p class="card-text text-center">Description: @task.Description</p>
+                            @if (task.Employee != null)
+                            {
+                                <p class="card-text">Assignee: @task.Employee</p>
+                            }
+                            else
+                            {
+                                <p class="card-text">Assignee:<strong> Not assigned</strong></p>
+                            }
+                            @if (task.IsCompleted)
+                            {
+                                <p class="card-text"><strong>Task is completed</strong></p>
+                                <p class="card-text">Date completed: @task.DateCompleted</p>
+                            }
+                            else
+                            {
+                                <p class="card-text"><strong>Task is not completed yet</strong></p>
+                                <p class="card-text">Due date: @task.DueDate</p>
+                            }
+                            <div class="d-grid gap-2">
+                                <a asp-controller="Tasks" asp-action="DeleteTask" asp-route-id="@task.Id" class="btn btn-danger mb-2">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        }
+    </div>
+}
+else
+{
+    <p class="text-center">All tasks are completed!</p>
+}

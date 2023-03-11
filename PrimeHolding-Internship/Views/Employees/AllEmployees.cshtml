@@ -1,0 +1,39 @@
+﻿@model IEnumerable<EmployeeDetailsViewModel>
+
+@{
+    ViewData["Title"] = "All Employees";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+@if (Model.Any())
+{
+    <div class="text-center row">
+        @foreach (var employee in Model)
+        {
+            <input type="hidden" asp-for="@employee.Id" />
+            <div class="col-sm-6" style="margin-bottom: 10px">
+                <div class="card ">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">@employee.FullName</h4>
+                        <p class="card-text">Email: @employee.Email</p>
+                        <p class="card-text">Phone Number: @employee.PhoneNumber</p>
+                        @if (employee.BirthDate != null)
+                        {
+                            <p class="card-text">Birth Date: @employee.BirthDate</p>
+                        }
+                        <p class="card-text">Salary: @employee.Salary</p>
+                        <div class="d-grid gap-2">
+                        <a asp-controller="Employees" asp-action="EditEmployee" asp-route-id="@employee.Id" class="btn btn-warning">Edit</a>
+                        <a asp-controller="Employees" asp-action="DeleteEmployee" asp-route-id="@employee.Id" class="btn btn-danger mb-2">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p class="text-center">No employees yet!</p>
+}

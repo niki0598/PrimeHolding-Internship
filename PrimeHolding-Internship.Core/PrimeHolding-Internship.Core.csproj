@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>PrimeHolding_Internship.Core</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PrimeHolding-Internship.Common\PrimeHolding-Internship.Common.csproj" />
+    <ProjectReference Include="..\PrimeHolding-Internship.Infrastructure\PrimeHolding-Internship.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
