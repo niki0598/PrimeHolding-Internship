@@ -1,7 +1,7 @@
 ﻿@model EmployeeDetailsViewModel
 
 @{
-    ViewBag.Title = "Add an employee";
+    ViewBag.Title = "Add an Employee";
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
@@ -27,7 +27,7 @@
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.BirthDate" class="form-label">Birth Date</label>
-                <input asp-for="@Model.BirthDate" class="form-control" aria-required="true" />
+                <input asp-for="@Model.BirthDate" class="form-control" aria-required="true" placeholder="DD/MM/YYYY" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             <div class="mb-3">

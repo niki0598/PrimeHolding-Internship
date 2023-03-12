@@ -1,0 +1,42 @@
+﻿@model AddSalaryViewModel
+
+@{
+    ViewBag.Title = "Salary Change";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label asp-for="@Model.EmployeeId" class="form-label">Assignee</label>
+                <select asp-for="@Model.EmployeeId" class="form-control">
+                    @foreach (var employee in Model.Employees)
+                    {
+                        <option value="@employee.Id">@employee.FullName</option>
+                    }
+                </select>
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Salary" class="form-label">Salary change</label>
+                <input asp-for="@Model.Salary" class="form-control" aria-required="true" />
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Reason" class="form-label">Reason</label>
+                <input asp-for="@Model.Reason" class="form-control" aria-required="true" />
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Change Salary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

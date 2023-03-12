@@ -13,5 +13,8 @@
 
         public const int TaskDescriptionMinLength = 10;
         public const int TaskDescriptionMaxLength = 300;
+
+        public const int SalaryChangeDateReasonMinLength = 5;
+        public const int SalaryChangeDateReasonMaxLength = 300;
     }
 }

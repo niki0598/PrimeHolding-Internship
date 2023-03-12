@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TaskDetailsViewModel>
+﻿@model IEnumerable<TaskActiveViewModel>
 
 @{
     ViewBag.Title = "Active Tasks";
@@ -24,12 +24,19 @@
                         }
                         else
                         {
-                            <p class="card-text">Assignee:<strong> Not assigned</strong></p>
+                            <p class="card-text">Assignee:<strong style="color:red"> Not assigned</strong></p>
                         }
                         <div class="d-grid gap-2">
                             @if (task.Employee != null)
                             {
-                                <a asp-controller="Tasks" asp-action="CompleteTask" asp-route-id="@task.Id" class="btn btn-success">Complete</a>
+                                @if (task.DueDate < DateTime.Now)
+                                {
+                                    <p class="card-text" style="color:red"><strong> Task is past its due date!</strong></p>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Tasks" asp-action="CompleteTask" asp-route-id="@task.Id" class="btn btn-success">Complete</a>
+                                }
                             }
                             <a asp-controller="Tasks" asp-action="EditTask" asp-route-id="@task.Id" class="btn btn-warning">Edit</a>
                             <a asp-controller="Tasks" asp-action="DeleteTask" asp-route-id="@task.Id" class="btn btn-danger mb-2">Delete</a>

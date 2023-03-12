@@ -44,16 +44,26 @@ namespace PrimeHolding_Internship.Core.Services
         {
             var employee = new Employee
             {
-                Id = model.Id,
                 FullName = model.FullName,
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
-                BirthDate = DateTime.Parse(model.BirthDate!),
+                BirthDate = model.BirthDate != null ? DateTime.Parse(model.BirthDate) : null,
                 TasksCompleted = 0,
                 Salary = model.Salary
             };
 
             await context.Employees.AddAsync(employee);
+            await context.SaveChangesAsync();
+
+            var initialSalary = new SalaryHistory
+            {
+                EmployeeId = employee.Id,
+                Salary = employee.Salary,
+                SalaryChangeDate = DateTime.Now,
+                Reason = "Initial salary"
+            };
+
+            await context.SalariesHistory.AddAsync(initialSalary);
             await context.SaveChangesAsync();
         }
 
@@ -64,7 +74,7 @@ namespace PrimeHolding_Internship.Core.Services
                 .FirstAsync();
         }
 
-        public async Task EditEmployeeAsync(int employeeId, EmployeeDetailsViewModel model)
+        public async Task EditEmployeeAsync(int employeeId, EmployeeEditViewModel model)
         {
             var employee = await context.Employees
                 .Where(e => e.Id == employeeId)
@@ -76,7 +86,6 @@ namespace PrimeHolding_Internship.Core.Services
                 employee.Email = model.Email;
                 employee.PhoneNumber = model.PhoneNumber;
                 employee.BirthDate = DateTime.Parse(model.BirthDate!);
-                employee.Salary = model.Salary;
             }
 
             await context.SaveChangesAsync();

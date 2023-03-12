@@ -57,20 +57,19 @@ namespace PrimeHolding_Internship.Controllers
         {
             var employee = await employeeService.GetByIdAsync(id);
 
-            var model = new EmployeeDetailsViewModel()
+            var model = new EmployeeEditViewModel
             {
                 FullName = employee.FullName,
                 Email = employee.Email,
                 PhoneNumber = employee.PhoneNumber,
                 BirthDate = employee.BirthDate?.ToShortDateString(),
-                Salary = employee.Salary
             };
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditEmployee(EmployeeDetailsViewModel model)
+        public async Task<IActionResult> EditEmployee(EmployeeEditViewModel model)
         {
             if (!ModelState.IsValid)
             {

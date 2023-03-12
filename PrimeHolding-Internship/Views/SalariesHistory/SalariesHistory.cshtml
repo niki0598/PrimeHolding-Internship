@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SalaryHistoryViewModel>
+
+@{
+    ViewBag.Title = "Salaries History";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var salary in Model)
+        {
+            <input type="hidden" asp-for="@salary.Id" />
+            <div class="col-sm-6" style="margin-bottom: 10px">
+                <div class="card ">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">@salary.Employee</h4>
+                        <p class="card-text">New salary: @salary.Salary</p>
+                        <p class="card-text">Date changed: @salary.SalaryChangeDate</p>
+                        <p class="card-text">Reason for change: @salary.Reason</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p class="text-center">No salary changes!</p>
+}

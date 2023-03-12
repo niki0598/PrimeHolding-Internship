@@ -77,6 +77,7 @@ namespace PrimeHolding_Internship.Infrastructure.Data.Configuration
                     Email = "janedoe@yahoo.com",
                     BirthDate = new DateTime(1995, 5, 27),
                     PhoneNumber = "+359875472800",
+                    TasksCompleted = 1,
                     Salary = 1800
                 },
             };

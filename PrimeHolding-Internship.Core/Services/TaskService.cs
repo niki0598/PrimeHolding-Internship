@@ -36,7 +36,7 @@ namespace PrimeHolding_Internship.Core.Services
                 });
         }
 
-        public async Task<IEnumerable<TaskDetailsViewModel>> GetActiveAsync()
+        public async Task<IEnumerable<TaskActiveViewModel>> GetActiveAsync()
         {
             var tasks = await context.Tasks
                 .Include(e => e.Employee)
@@ -44,7 +44,7 @@ namespace PrimeHolding_Internship.Core.Services
                 .ToListAsync();
 
             return tasks
-                .Select(t => new TaskDetailsViewModel()
+                .Select(t => new TaskActiveViewModel
                 {
                     Id = t.Id,
                     Title = t.Title,
@@ -69,17 +69,17 @@ namespace PrimeHolding_Internship.Core.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<TaskEntity> GetByIdAsync(int taskId)
+        public async Task<TaskEntity> GetActiveByIdAsync(int taskId)
         {
             return await context.Tasks
-                .Where(t => t.Id == taskId)
+                .Where(t => t.Id == taskId  && !t.IsCompleted)
                 .FirstAsync();
         }
 
         public async Task EditTaskAsync(int taskId, TaskDetailsViewModel model)
         {
             var task = await context.Tasks
-                .Where(t => t.Id == taskId)
+                .Where(t => t.Id == taskId && !t.IsCompleted)
                 .FirstOrDefaultAsync();
 
             if (task != null)

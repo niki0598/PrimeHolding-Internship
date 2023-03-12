@@ -71,7 +71,7 @@ namespace PrimeHolding_Internship.Infrastructure.Data.Configuration
                     Title = "Giving feedback",
                     Description = "Giving feedback to a junior developer",
                     DueDate = new DateTime(2023, 3, 15, 15, 00, 00),
-                    EmployeeId = 1
+                    EmployeeId = null
                 },
                 new Task
                 {
@@ -79,6 +79,8 @@ namespace PrimeHolding_Internship.Infrastructure.Data.Configuration
                     Title = "Checking code",
                     Description = "Checking the code of an intern developer",
                     DueDate = new DateTime(2023, 4, 10, 10, 00, 00),
+                    IsCompleted = true,
+                    DateCompleted = new DateTime(2023, 03, 08, 12, 30, 00),
                     EmployeeId = 7
                 },
                 new Task
@@ -86,7 +88,7 @@ namespace PrimeHolding_Internship.Infrastructure.Data.Configuration
                     Id = 9,
                     Title = "Writing documentation",
                     Description = "Writing documentation for the latest project",
-                    DueDate = new DateTime(2023, 4, 1, 14, 30, 00),
+                    DueDate = new DateTime(2022, 4, 1, 14, 30, 00),
                     EmployeeId = 4
                 },
                 new Task

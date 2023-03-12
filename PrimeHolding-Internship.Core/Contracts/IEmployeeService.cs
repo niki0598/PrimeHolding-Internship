@@ -1,6 +1,7 @@
-﻿using PrimeHolding_Internship.Core.Models.Employees;
+﻿using Task = System.Threading.Tasks.Task;
+
+using PrimeHolding_Internship.Core.Models.Employees;
 using PrimeHolding_Internship.Infrastructure.Data.Entities;
-using Task = System.Threading.Tasks.Task;
 
 namespace PrimeHolding_Internship.Core.Contracts
 {
@@ -14,7 +15,7 @@ namespace PrimeHolding_Internship.Core.Contracts
 
         Task<Employee> GetByIdAsync(int employeeId);
 
-        Task EditEmployeeAsync(int employeeId, EmployeeDetailsViewModel model);
+        Task EditEmployeeAsync(int employeeId, EmployeeEditViewModel model);
 
         Task DeleteEmployeeAsync(int employeeId);
 

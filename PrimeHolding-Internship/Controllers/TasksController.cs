@@ -56,7 +56,7 @@ namespace PrimeHolding_Internship.Controllers
             {
                 await taskService.AddTaskAsync(model);
 
-                return RedirectToAction(nameof(AllTasks));
+                return RedirectToAction(nameof(ActiveTasks));
             }
             catch (Exception)
             {
@@ -69,18 +69,27 @@ namespace PrimeHolding_Internship.Controllers
         [HttpGet]
         public async Task<IActionResult> EditTask(int id)
         {
-            var task = await taskService.GetByIdAsync(id);
-
-            var model = new TaskDetailsViewModel
+            try
             {
-                Title = task.Title,
-                Description = task.Description,
-                Employees = await employeeService.GetAllToListAsync(),
-                EmployeeId = task.EmployeeId,
-                DueDate = task.DueDate,
-            };
+                var task = await taskService.GetActiveByIdAsync(id);
 
-            return View(model);
+                var model = new TaskDetailsViewModel
+                {
+                    Title = task.Title,
+                    Description = task.Description,
+                    Employees = await employeeService.GetAllToListAsync(),
+                    EmployeeId = task.EmployeeId,
+                    DueDate = task.DueDate,
+                };
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Something went wrong");
+
+                return RedirectToAction(nameof(ActiveTasks));
+            }
         }
 
         [HttpPost]
@@ -109,7 +118,7 @@ namespace PrimeHolding_Internship.Controllers
         {
             await taskService.DeleteTaskAsync(id);
 
-            return RedirectToAction(nameof(AllTasks));
+            return RedirectToAction(nameof(ActiveTasks));
         }
 
         public async Task<IActionResult> CompleteTask(int id)

@@ -12,8 +12,8 @@ using PrimeHolding_Internship.Infrastructure.Data;
 namespace PrimeHolding_Internship.Infrastructure.Migrations
 {
     [DbContext(typeof(AssignmentDbContext))]
-    [Migration("20230311005830_UpdatedTaskEmployeeToAllowNulls")]
-    partial class UpdatedTaskEmployeeToAllowNulls
+    [Migration("20230312161648_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,208 +23,6 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens", (string)null);
-                });
 
             modelBuilder.Entity("PrimeHolding_Internship.Infrastructure.Data.Entities.Employee", b =>
                 {
@@ -330,7 +128,93 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                             FullName = "Jane Doe",
                             PhoneNumber = "+359875472800",
                             Salary = 1800m,
-                            TasksCompleted = 0
+                            TasksCompleted = 1
+                        });
+                });
+
+            modelBuilder.Entity("PrimeHolding_Internship.Infrastructure.Data.Entities.SalaryHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<DateTime>("SalaryChangeDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("SalariesHistory");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EmployeeId = 1,
+                            Reason = "Initial salary",
+                            Salary = 1800m,
+                            SalaryChangeDate = new DateTime(2023, 3, 12, 18, 16, 48, 601, DateTimeKind.Local).AddTicks(7987)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EmployeeId = 2,
+                            Reason = "Initial salary",
+                            Salary = 2500m,
+                            SalaryChangeDate = new DateTime(2023, 3, 12, 18, 16, 48, 601, DateTimeKind.Local).AddTicks(8018)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EmployeeId = 3,
+                            Reason = "Initial salary",
+                            Salary = 1500m,
+                            SalaryChangeDate = new DateTime(2023, 3, 12, 18, 16, 48, 601, DateTimeKind.Local).AddTicks(8021)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            EmployeeId = 4,
+                            Reason = "Initial salary",
+                            Salary = 1650m,
+                            SalaryChangeDate = new DateTime(2023, 3, 12, 18, 16, 48, 601, DateTimeKind.Local).AddTicks(8023)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            EmployeeId = 5,
+                            Reason = "Initial salary",
+                            Salary = 2000m,
+                            SalaryChangeDate = new DateTime(2023, 3, 12, 18, 16, 48, 601, DateTimeKind.Local).AddTicks(8025)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            EmployeeId = 6,
+                            Reason = "Initial salary",
+                            Salary = 2800m,
+                            SalaryChangeDate = new DateTime(2023, 3, 12, 18, 16, 48, 601, DateTimeKind.Local).AddTicks(8027)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            EmployeeId = 7,
+                            Reason = "Initial salary",
+                            Salary = 1800m,
+                            SalaryChangeDate = new DateTime(2023, 3, 12, 18, 16, 48, 601, DateTimeKind.Local).AddTicks(8029)
                         });
                 });
 
@@ -356,6 +240,9 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(80)
@@ -374,6 +261,7 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                             Description = "Fixing bugs related to the UX",
                             DueDate = new DateTime(2023, 5, 23, 12, 30, 0, 0, DateTimeKind.Unspecified),
                             EmployeeId = 1,
+                            IsCompleted = false,
                             Title = "Fixing bugs"
                         },
                         new
@@ -382,6 +270,7 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                             Description = "Implementing new feature related to the UI",
                             DueDate = new DateTime(2023, 3, 30, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             EmployeeId = 5,
+                            IsCompleted = false,
                             Title = "Implementing feature"
                         },
                         new
@@ -390,6 +279,7 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                             Description = "Learning JavaScript",
                             DueDate = new DateTime(2023, 4, 30, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             EmployeeId = 7,
+                            IsCompleted = false,
                             Title = "Learning new program language"
                         },
                         new
@@ -398,6 +288,7 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                             Description = "Testing code for bugs",
                             DueDate = new DateTime(2023, 8, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
                             EmployeeId = 3,
+                            IsCompleted = false,
                             Title = "Testing code"
                         },
                         new
@@ -406,6 +297,7 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                             Description = "Building a new application",
                             DueDate = new DateTime(2023, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmployeeId = 6,
+                            IsCompleted = false,
                             Title = "Building an application"
                         },
                         new
@@ -414,6 +306,7 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                             Description = "Troubleshooting",
                             DueDate = new DateTime(2023, 3, 20, 13, 30, 0, 0, DateTimeKind.Unspecified),
                             EmployeeId = 5,
+                            IsCompleted = false,
                             Title = "Troubleshooting"
                         },
                         new
@@ -421,23 +314,26 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                             Id = 7,
                             Description = "Giving feedback to a junior developer",
                             DueDate = new DateTime(2023, 3, 15, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            EmployeeId = 1,
+                            IsCompleted = false,
                             Title = "Giving feedback"
                         },
                         new
                         {
                             Id = 8,
+                            DateCompleted = new DateTime(2023, 3, 8, 12, 30, 0, 0, DateTimeKind.Unspecified),
                             Description = "Checking the code of an intern developer",
                             DueDate = new DateTime(2023, 4, 10, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             EmployeeId = 7,
+                            IsCompleted = true,
                             Title = "Checking code"
                         },
                         new
                         {
                             Id = 9,
                             Description = "Writing documentation for the latest project",
-                            DueDate = new DateTime(2023, 4, 1, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            DueDate = new DateTime(2022, 4, 1, 14, 30, 0, 0, DateTimeKind.Unspecified),
                             EmployeeId = 4,
+                            IsCompleted = false,
                             Title = "Writing documentation"
                         },
                         new
@@ -446,59 +342,20 @@ namespace PrimeHolding_Internship.Infrastructure.Migrations
                             Description = "Learning the SOLID principles",
                             DueDate = new DateTime(2023, 5, 27, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             EmployeeId = 2,
+                            IsCompleted = false,
                             Title = "Learning new stuff"
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("PrimeHolding_Internship.Infrastructure.Data.Entities.SalaryHistory", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("PrimeHolding_Internship.Infrastructure.Data.Entities.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("PrimeHolding_Internship.Infrastructure.Data.Entities.Task", b =>

@@ -9,11 +9,11 @@ namespace PrimeHolding_Internship.Core.Contracts
     {
         Task<IEnumerable<TaskDetailsViewModel>> GetAllAsync();
 
-        Task<IEnumerable<TaskDetailsViewModel>> GetActiveAsync();
+        Task<IEnumerable<TaskActiveViewModel>> GetActiveAsync();
 
         Task AddTaskAsync(TaskDetailsViewModel model);
 
-        Task<TaskEntity> GetByIdAsync(int taskId);
+        Task<TaskEntity> GetActiveByIdAsync(int taskId);
 
         Task EditTaskAsync(int taskId, TaskDetailsViewModel model);
 
